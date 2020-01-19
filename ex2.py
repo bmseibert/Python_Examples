@@ -12,7 +12,6 @@ def isreverse(s1, s2):
         if s1Length == 0 or (s1Length == 1 and s1 == s2):
             done = True
             result = True
-            #return True
         # Case 3: Check if external letters are the same, then pop them and loop
         elif s1List[0] == s2List[len(s2List)-1] and done is not True:
             s1List.pop(0)
