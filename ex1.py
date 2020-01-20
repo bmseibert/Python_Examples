@@ -13,16 +13,27 @@ class ConnectFour:
         """Return True if a line of identical tokens exists starting at (x,y)
            in direction (dx,dy)"""
         token = self.board[y][x]
+        last_token = token
         # Horizontal Case
         if dx == 1 and dy == 0:
             acc = 0
-            while x < self.w - 1:
+            while x < self.w - 1 and last_token == self.board[y][x+1]:
                 # Checks if the token horizontally to the right of the starting token is the
                 # same as the starting token. If so a accumulator is incremented and the x position is incremented
                 # to check the next horizontal position on the board
                 if token == self.board[y][x+1]:
                     acc = acc + 1
+                    last_token = self.board[y][x + 1]
                     x = x + 1
+                else:
+                    break
+            # removes the amount of spaces to the right that the iterator moved
+            x = x - acc
+            while x > 0 and last_token == self.board[y][x-1]:
+                if token == self.board[y][x-1]:
+                    acc = acc + 1
+                    last_token == self.board[y][x - 1]
+                    x = x - 1
                 else:
                     break
             # if the accumulator reaches 3, then there are 4 of the same token in a row and thus a player has
@@ -32,10 +43,19 @@ class ConnectFour:
         # Vertical Case
         if dx == 0 and dy == 1:
             acc = 0
-            while y < self.h - 1:
+            while y < self.h - 1 and last_token == self.board[y+1][x]:
                 if token == self.board[y+1][x]:
                     acc = acc + 1
+                    last_token = self.board[y+1][x]
                     y = y + 1
+                else:
+                    break
+            y = y - acc
+            while y > 0 and last_token == self.board[y-1][x]:
+                if token == self.board[y-1][x]:
+                    acc = acc + 1
+                    last_token = self.board[y - 1][x]
+                    y = y - 1
                 else:
                     break
             if acc == 3:
@@ -43,11 +63,22 @@ class ConnectFour:
         # Diagonal Up Case
         if dx == 1 and dy == 1:
             acc = 0
-            while self.w - 1 > x > 0 and self.h - 1 > y > 0:
+            while self.w - 1 > x >= 0 and self.h - 1 > y >= 0 and last_token == self.board[y+1][x+1]:
                 if token == self.board[y+1][x+1]:
                     acc = acc + 1
+                    last_token = self.board[y+1][x+1]
                     x = x + 1
                     y = y + 1
+                else:
+                    break
+            x = x - acc
+            y = y - acc
+            while self.w - 1 > x > 0 and self.h - 1 > y > 0 and last_token == self.board[y-1][x-1]:
+                if token == self.board[y - 1][x - 1]:
+                    acc = acc + 1
+                    last_token == self.board[y - 1][x - 1]
+                    x = x - 1
+                    y = y - 1
                 else:
                     break
             if acc == 3:
@@ -55,11 +86,22 @@ class ConnectFour:
         # Diagonal Down Case
         if dx == 1 and dy == -1:
             acc = 0
-            while self.w - 1 > x > 0 and self.h - 1 > y > 0:
-                if token == self.board[y - 1][x - 1]:
+            while self.w - 1 > x > 0 and self.h - 1 >= y > 0 and last_token == self.board[y - 1][x + 1]:
+                if token == self.board[y - 1][x + 1]:
                     acc = acc + 1
-                    x = x - 1
+                    last_token == self.board[y - 1][x + 1]
+                    x = x + 1
                     y = y - 1
+                else:
+                    break
+            x = x - acc
+            y = y + acc
+            while self.w - 1 >= x > 0 and self.h - 1 > y > 0 and last_token == self.board[y + 1][x - 1]:
+                if token == self.board[y + 1][x - 1]:
+                    acc = acc + 1
+                    last_token == self.board[y + 1][x - 1]
+                    x = x - 1
+                    y = y + 1
                 else:
                     break
             if acc == 3:
@@ -103,11 +145,11 @@ W = 7
 H = 6
 Board1 =[
     [1,1,1,1,2,1,0],
-    [0,2,2,2,0,0,0],
-    [0,0,2,0,0,0,0],
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0]
+    [0,2,2,2,0,1,0],
+    [1,0,2,1,0,1,0],
+    [1,0,1,0,1,1,0],
+    [1,1,0,0,0,1,0],
+    [1,0,0,0,0,0,1]
 ]
 
 Board2 =[
@@ -120,4 +162,5 @@ Board2 =[
 ]
 
 Testboard = ConnectFour(Board1, W, H)
+print(Testboard.isLineAt(6,5,1,1))
 #Testboard.printOutcome()
