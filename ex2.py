@@ -16,6 +16,5 @@ def isreverse(s1, s2):
         elif s1List[0] == s2List[len(s2List)-1] and done is not True:
             s1List.pop(0)
             s2List.pop(len(s2List)-1)
-            isreverse(s1List, s2List)
-            result = True
+            return isreverse(s1List, s2List)
     return result

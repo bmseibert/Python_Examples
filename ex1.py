@@ -38,7 +38,7 @@ class ConnectFour:
                     break
             # if the accumulator reaches 3, then there are 4 of the same token in a row and thus a player has
             # won the game
-            if acc == 3:
+            if acc >= 3:
                 return True
         # Vertical Case
         if dx == 0 and dy == 1:
@@ -58,7 +58,7 @@ class ConnectFour:
                     y = y - 1
                 else:
                     break
-            if acc == 3:
+            if acc >= 3:
                 return True
         # Diagonal Up Case
         if dx == 1 and dy == 1:
@@ -71,17 +71,7 @@ class ConnectFour:
                     y = y + 1
                 else:
                     break
-            x = x - acc
-            y = y - acc
-            while self.w - 1 > x > 0 and self.h - 1 > y > 0 and last_token == self.board[y-1][x-1]:
-                if token == self.board[y - 1][x - 1]:
-                    acc = acc + 1
-                    last_token == self.board[y - 1][x - 1]
-                    x = x - 1
-                    y = y - 1
-                else:
-                    break
-            if acc == 3:
+            if acc >= 3:
                 return True
         # Diagonal Down Case
         if dx == 1 and dy == -1:
@@ -94,18 +84,10 @@ class ConnectFour:
                     y = y - 1
                 else:
                     break
-            x = x - acc
-            y = y + acc
-            while self.w - 1 >= x > 0 and self.h - 1 > y > 0 and last_token == self.board[y + 1][x - 1]:
-                if token == self.board[y + 1][x - 1]:
-                    acc = acc + 1
-                    last_token == self.board[y + 1][x - 1]
-                    x = x - 1
-                    y = y + 1
-                else:
-                    break
-            if acc == 3:
+            if acc >= 3:
                 return True
+            else:
+                return False
         else:
             return False
 
@@ -141,26 +123,26 @@ class ConnectFour:
             print("No winner")
         else:
             print("Player", o, " won")
-W = 7
-H = 6
-Board1 =[
-    [1,1,1,1,2,1,0],
-    [0,2,2,2,0,1,0],
-    [1,0,2,1,0,1,0],
-    [1,0,1,0,1,1,0],
-    [1,1,0,0,0,1,0],
-    [1,0,0,0,0,0,1]
-]
-
-Board2 =[
-    [0,1,1,1,1,0,0],
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0],
-    [0,0,0,0,0,0,0]
-]
-
-Testboard = ConnectFour(Board1, W, H)
-print(Testboard.isLineAt(6,5,1,1))
+# W = 7
+# H = 6
+# Board1 =[
+#     [1,1,1,1,2,1,0],
+#     [0,2,2,2,0,1,0],
+#     [1,0,2,1,0,1,0],
+#     [1,0,1,0,1,1,0],
+#     [1,1,0,0,0,1,0],
+#     [1,0,0,0,0,0,1]
+# ]
+#
+# Board2 =[
+#     [0,1,1,1,1,0,0],
+#     [0,0,0,0,0,0,0],
+#     [0,0,0,0,0,0,0],
+#     [0,0,0,0,0,0,0],
+#     [0,0,0,0,0,0,0],
+#     [0,0,0,0,0,0,0]
+# ]
+#
+# Testboard = ConnectFour(Board1, W, H)
+# print(Testboard.isLineAt(0,1,1,-1))
 #Testboard.printOutcome()
