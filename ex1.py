@@ -123,26 +123,3 @@ class ConnectFour:
             print("No winner")
         else:
             print("Player", o, " won")
-# W = 7
-# H = 6
-# Board1 =[
-#     [1,1,1,1,2,1,0],
-#     [0,2,2,2,0,1,0],
-#     [1,0,2,1,0,1,0],
-#     [1,0,1,0,1,1,0],
-#     [1,1,0,0,0,1,0],
-#     [1,0,0,0,0,0,1]
-# ]
-#
-# Board2 =[
-#     [0,1,1,1,1,0,0],
-#     [0,0,0,0,0,0,0],
-#     [0,0,0,0,0,0,0],
-#     [0,0,0,0,0,0,0],
-#     [0,0,0,0,0,0,0],
-#     [0,0,0,0,0,0,0]
-# ]
-#
-# Testboard = ConnectFour(Board1, W, H)
-# print(Testboard.isLineAt(0,1,1,-1))
-#Testboard.printOutcome()

@@ -32,4 +32,4 @@ def jaccard(fname1, fname2):
     jindex = len(intersec)/len(union)
     return jindex
 
-print(jaccard("/home/ben/Artifical_Intelligence/Homework_1/alice_ascii.txt", "/home/ben/Artifical_Intelligence/Homework_1/looking_glass_ascii.txt"))
+# print(jaccard("/home/ben/Artifical_Intelligence/Homework_1/alice_ascii.txt", "/home/ben/Artifical_Intelligence/Homework_1/looking_glass_ascii.txt"))
